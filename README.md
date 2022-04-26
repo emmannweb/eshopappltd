@@ -5,9 +5,10 @@
 ###### This is an E-commerce Web App implemented with MERN Stack, Redux and Stripe payment.
 ## Features:
 ##### - User Dashboard / user profile / purchase history 
+##### - Check out process to payment
 ##### - Admin Dashboard
 ##### - Automatic logout after 1h.
-##### - Automatic stock management
+##### - Automatic product stock management
 ##### - Purchase history (for Admin)
 ##### - Pagination Front-End and Backend
 ##### - Search Product in Frontend
