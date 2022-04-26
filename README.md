@@ -4,7 +4,7 @@
 #### Deploy Link: https://eshopappltd.herokuapp.com/
 ###### This is an E-commerce Web App implemented with MERN Stack, Redux and Stripe payment.
 ## Features:
-##### - User Dashboard / user profile / order history 
+##### - User Dashboard / user profile / purchase history 
 ##### - Admin Dashboard
 ##### - Automatic logout after 1h.
 ##### - Automatic stock management
@@ -15,5 +15,5 @@
 ##### - comment
 ##### - Add to cart in frontend and in single product
 ##### - Generate Product order after a successfull payment
-##### - Manage orders in admin dashboard
+##### - Manage orders, products, users, product category in admin dashboard
 ##### - Stripe payment Gateway
