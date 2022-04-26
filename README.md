@@ -18,3 +18,6 @@
 ##### - Generate Product order after a successfull payment
 ##### - Manage orders, products, users, product category in admin dashboard
 ##### - Stripe payment Gateway
+
+<img src="frontend/src/images/orderdash.png" width="100%"/> 
+<img src="frontend/src/images/orderdetails.png" width="100%"/> 
