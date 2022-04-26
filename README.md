@@ -15,4 +15,5 @@
 ##### - comment
 ##### - Add to cart in frontend and in single product
 ##### - Generate Product order after a successfull payment
+##### - Manage orders in admin dashboard
 ##### - Stripe payment Gateway
