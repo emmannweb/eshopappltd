@@ -15,6 +15,7 @@
 ##### - Rating system, user is allowed to post only 1 product review
 ##### - comment
 ##### - Add to cart in frontend and in single product
+##### - Cart page you can decrease and increae quantity according to the quantity available in the stock
 ##### - Generate Product order after a successfull payment
 ##### - Manage orders, products, users, product category in admin dashboard
 ##### - Stripe payment Gateway
