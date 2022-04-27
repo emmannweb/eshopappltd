@@ -31,4 +31,4 @@ EXPIRE_TOKEN='for 1h', STRIPE_SECRET_KEY='your stripe key secret'
 - last, run in the root folder: npm run server, in the frontend: npm start
 
 ## That's it!
-###### if you like this project please rate me here, than you!
+###### if you like this project please rate me here, thank you!
