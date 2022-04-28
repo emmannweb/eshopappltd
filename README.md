@@ -2,7 +2,7 @@
 <img src="frontend/src/images/eshopappltd.png" width="100%"/> 
 
 #### Deploy Link: https://eshopappltd.herokuapp.com/
-###### This is an E-commerce Web App implemented with MERN Stack, Redux and Stripe payment.
+###### This is an E-commerce Web App implemented with MERN Stack, Redux and Stripe payment. When a user is sign in, we generate a token (JWT), and that token is saved in a cookie for 1h, after this time you will be disconnected.
 ## Features:
 ##### - User Dashboard / user profile / purchase history 
 ##### - Check out process to payment
