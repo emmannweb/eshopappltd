@@ -1,9 +1,13 @@
 import React from 'react'
-import mainImage from '../images/main.png'
+import headerImage from '../images/main.png'
 
 const Header = ({title="Title", description="Description"}) =>(
 
-    <img className='img-fluid' src={mainImage} alt={title} />
+    <>
+        <div className="header_wrapper">
+            <img className='img-fluid header_image' src={headerImage} alt={title} />
+        </div>
+    </>
 )
 
 export default Header

@@ -7,6 +7,9 @@ require("dotenv").config();
 var cors = require('cors');
 const path = require('path');
 
+//keep the server alive
+app.keepAliveTimeout = (60 * 1000) + 1000;
+app.headersTimeout = (60 * 1000) + 2000;
 
 //import routes
 const auth = require("./routes/auth");
@@ -37,9 +40,9 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 app.use(morgan('dev'));
-app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.json({limit: '100mb'}));
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  limit: '5mb',
+  limit: '100mb',
   extended: true
   })); 
 app.use(cookieParser());

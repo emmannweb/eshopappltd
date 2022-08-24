@@ -3,10 +3,10 @@ import React from 'react'
 const Footer = () => {
     return (
         <>
-            <div className="text-center p-4 footer" style={{backgroundColor: '#fafafa'}}>
-                © 2022 Copyright: <a className="text-reset fw-bold" target="_blank" rel="noreferrer" href="https://github.com/emmannweb">LBWF Electronic Ltd.</a>    
+            <div className="text-center p-4 footer" style={{ backgroundColor: 'white' }}>
+                ©2022 Copyright: <a style={{ paddingLeft: '5px' }} className="text-reset fw-bold" target="_blank" rel="noreferrer" href="https://github.com/emmannweb">EShopapp Ltd.</a>
             </div>
-         </>
+        </>
     )
 }
 

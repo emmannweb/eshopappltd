@@ -60,7 +60,7 @@ const Menu = ({history}) => {
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
 
-                <div className="container-fluid">
+                <div className="container-fluid mobile_nav">
                 
                     <button
                         className="navbar-toggler"
@@ -136,10 +136,10 @@ const Menu = ({history}) => {
                     {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
 
 
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center test">
                   {/* search box */}
-                    <Link className="text-reset me-3" to={'/cart'}>
-                        <i className="fas fa-shopping-cart"></i> <span style={{fontSize: "12px"}}>Cart </span> <span className="cart_style">{cartItems.length > 0 ? cartItems.length : 0 }</span>
+                    <Link className="text-reset " to={'/cart'}>
+                        <i className="fas fa-shopping-cart"></i> <span className="cart_text" style={{fontSize: "12px"}}>Cart </span> <span className="cart_style">{cartItems.length > 0 ? cartItems.length : 0 }</span>
                     </Link>
 
                     

@@ -14,16 +14,16 @@ const Card = ({product, id, countStock, rating, numReviews}) => {
     }
     return (
     
-        <div className="col-md-3 " style={{marginTop: "20px"}}>
+        <div className="col-md-3 col-6 " style={{marginTop: "20px"}}>
         <div className="card">
             <div className="card-body">
                 <div className="card-img-actions"> <img src={product.avatar ? product.avatar : imgDefault } className="card-img img-fluid" width="96" height="350" alt="" /> </div>
             </div>
             <div className="card-body bg-light text-center">
                 <div className="mb-2">
-                    <h5 className="font-weight-semibold mb-2"> <Link to={`/product/${product._id}`} className="text-default mb-2" data-abc="true">{product.name}</Link> </h5> <a href="#" className="text-muted" data-abc="true">{product.category? product.category.name : "" }</a>
+                    <h5 className="font-weight-semibold mb-2 card_title"> <Link to={`/product/${product._id}`} className="text-default mb-2" data-abc="true">{product.name}</Link> </h5> <a href="#" className="text-muted" data-abc="true">{product.category? product.category.name : "" }</a>
                 </div>
-                <h3 className="mb-0 font-weight-semibold">${product.price}</h3>
+                <h3 className="mb-0 font-weight-semibold ">${product.price}</h3>
                 {/* <div> <i className="fa fa-star star"></i> <i className="fa fa-star star"></i> <i className="fa fa-star star"></i> <i className="fa fa-star star"></i> </div> */}
                 <Rating value={rating} />
                 

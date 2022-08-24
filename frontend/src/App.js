@@ -36,10 +36,10 @@ const App = ({match}) => {
            
             <Header/>
           
-                <div className="container  justify-content-center mb-50" >
+                <div className="container mobile justify-content-center mb-50" >
                         {/* <h2>Latest Product</h2> */}
                    
-                        <div className="row" style={{paddingTop: "102px"}}>
+                        <div className="row pd_app" >
 
                             {
                                 loading ? <Loading/>: products&&products.length === 0 ? <><h2>{`No result found for your search query: "${keyword}"`}</h2></> :
