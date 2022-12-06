@@ -12,7 +12,7 @@ node_modules/
 # production
 /frontend/build
 package-lock.json
-frontend/package-lock.json
+/frontend/package-lock.json
 
 # misc
 .DS_Store
