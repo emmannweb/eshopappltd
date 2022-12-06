@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node backend/app.js",
     "server": "nodemon backend/app.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend "
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend ",
+     "vercel-build": "npm install --prefix frontend && npm run build --prefix frontend "
   },
   "author": "Emmanuel Francois",
   "license": "ISC",
