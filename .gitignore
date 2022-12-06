@@ -11,6 +11,7 @@ node_modules/
 
 # production
 /frontend/build
+package-lock.json
 
 # misc
 .DS_Store
