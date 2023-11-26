@@ -10,7 +10,7 @@ node_modules/
 /coverage
 
 # production
-/frontend/build
+#/frontend/build
 package-lock.json
 /frontend/package-lock.json
 
