@@ -24,7 +24,7 @@ const Card = ({ product, id, countStock, rating, numReviews }) => {
                     <div className="mb-2">
                         <h5 className="font-weight-semibold mb-2 card_title"> <Link to={`/product/${product._id}`} className="text-default mb-2" data-abc="true">{product.name}</Link> </h5> <a href="#" className="text-muted" data-abc="true">{product.category ? product.category.name : ""}</a>
                     </div>
-                    <h3 className="mb-0 font-weight-semibold ">${product.price}</h3>
+                    <h3 className="mb-0 font-weight-semibold price_mobile">${product.price}</h3>
 
                     <Rating value={rating} />
 

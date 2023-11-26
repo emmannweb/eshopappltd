@@ -709,6 +709,17 @@ ul.review_list {
 
 /* mobile phone */
 @media (max-width: 600px) {
+  .searchform_wrapper {
+    padding-right: 3%;
+  }
+
+  .searchform_wrapper .searchform .input-group {
+    width: 94%;
+  }
+
+  .searchform_wrapper .searchform .input-group button {
+    width: 30px;
+  }
 
   /* product card style */
   .product_card_style .card .card-body button {
@@ -717,6 +728,10 @@ ul.review_list {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .product_card_style .card .card-body h3 {
+    font-size: 19px;
   }
 
   .header_image {
