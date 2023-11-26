@@ -6,13 +6,13 @@ const User = require("../models/user");
 
 
 // check if user is authenticated
-exports.isAuthenticated = async (req, res, next)=>{
+exports.isAuthenticated = async (req, res, next) => {
 
-    const  { token } = req.cookies;
-  
+  const { token } = req.cookies;
+
   // Make sure token exists
   if (!token) {
-    return next(new ErrorResponse('Not authorized to access this route', 401));
+    return next(new ErrorResponse('You must log in.', 401));
   }
 
   try {
@@ -23,17 +23,16 @@ exports.isAuthenticated = async (req, res, next)=>{
 
     next();
   } catch (err) {
-    return next(new ErrorResponse('Not authorized to access this route', 401));
+    return next(new ErrorResponse('You must log in.', 401));
   }
-
 
 }
 
 
 
 //admin middleware
-exports.isAdmin = (req, res, next)=>{
-  if  (req.user.role===0){
+exports.isAdmin = (req, res, next) => {
+  if (req.user.role === 0) {
     return next(new ErrorResponse('Access denied, you must an admin', 401));
   }
   next();

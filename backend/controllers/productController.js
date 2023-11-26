@@ -3,33 +3,24 @@ const ErrorResponse = require('../utils/errorResponse');
 const cloudinary = require('../utils/cloudinary');
 const path = require('path');
 
-exports.createProduct = async (req, res, next)=>{
+exports.createProduct = async (req, res, next) => {
 
     try {
-        // const result = await cloudinary.uploader.upload(req.file.path, {
-        //     folder: "mern", 
-        //     // public_id: "product_id",
-        //     use_filename: true, 
-        //     unique_filename: false
-        
-        // });
-        const {name, description, price, countStock, avatar, category} = req.body;
- 
+
+        const { name, description, price, countStock, avatar, category } = req.body;
+
         const product = await Product.create({
             name,
             description,
-            price, 
+            price,
             countStock,
             category,
             avatar
-            // avatar: result.secure_url,
-            // cloudinary_id: result.public_id
         });
 
         res.status(200).json({
             success: true,
             product
-        
         });
 
     } catch (err) {
@@ -39,13 +30,13 @@ exports.createProduct = async (req, res, next)=>{
 
 
 
-exports.allProducts = async (req, res, next)=>{
+exports.allProducts = async (req, res, next) => {
     // enable search
     const keyword = req.query.keyword ? {
-      name: {
-          $regex: req.query.keyword,
-          $options: 'i'
-      }  
+        name: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
     } : {}
 
     // enable pagination
@@ -54,9 +45,9 @@ exports.allProducts = async (req, res, next)=>{
     const count = await Product.find({}).estimatedDocumentCount();
 
     try {
-        const products = await Product.find({...keyword}).sort({createdAt: -1}).populate("category")
-        .skip(pageSize * (page-1))
-        .limit(pageSize)
+        const products = await Product.find({ ...keyword }).sort({ createdAt: -1 }).populate("category")
+            .skip(pageSize * (page - 1))
+            .limit(pageSize)
 
         res.status(200).json({
             success: true,
@@ -73,7 +64,7 @@ exports.allProducts = async (req, res, next)=>{
 
 
 
-exports.singleProduct = async (req, res, next)=>{
+exports.singleProduct = async (req, res, next) => {
 
     try {
         const product = await Product.findById(req.params.id).populate("category");
@@ -116,7 +107,7 @@ exports.singleProduct = async (req, res, next)=>{
 //                 })
 //             }
 //         }
-       
+
 //         next();
 //     } catch (error) {
 //         return next(new ErrorResponse('product not found', 404));
@@ -127,47 +118,47 @@ exports.singleProduct = async (req, res, next)=>{
 // @access  Private
 exports.createProductReview = async (req, res, next) => {
     const { rating, comment } = req.body
-  
+
     const product = await Product.findById(req.params.id)
-  
+
     if (product) {
-      const alreadyReviewed =await product.reviews.find(
-        (r) => r.user.toString() === req.user._id.toString()
-      )
-  
-      if (alreadyReviewed) {
-        return next(new ErrorResponse('Product already reviewed', 400));
-      }
-  
-      const review = {
-        name: req.user.name,
-        rating: Number(rating),
-        comment,
-        user: req.user._id,
-      }
-  
-      product.reviews.push(review)
-  
-      product.numReviews = product.reviews.length
-  
-      product.rating =
-        product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-        product.reviews.length
-  
-      await product.save()
-      res.status(201).json({ message: 'Review added' })
+        const alreadyReviewed = await product.reviews.find(
+            (r) => r.user.toString() === req.user._id.toString()
+        )
+
+        if (alreadyReviewed) {
+            return next(new ErrorResponse('Product already reviewed', 400));
+        }
+
+        const review = {
+            name: req.user.name,
+            rating: Number(rating),
+            comment,
+            user: req.user._id,
+        }
+
+        product.reviews.push(review)
+
+        product.numReviews = product.reviews.length
+
+        product.rating =
+            product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+            product.reviews.length
+
+        await product.save()
+        res.status(201).json({ message: 'Review added' })
     } else {
-      res.status(404)
-      return next(new ErrorResponse('product not found', 404));
+        res.status(404)
+        return next(new ErrorResponse('product not found', 404));
     }
-  }
+}
 
 
 
-exports.editProduct = async (req, res, next)=>{
+exports.editProduct = async (req, res, next) => {
 
     try {
-        const product = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.status(200).json({
             success: true,
             product
@@ -178,13 +169,13 @@ exports.editProduct = async (req, res, next)=>{
     }
 }
 
-exports.deleteProduct = async (req, res, next)=>{
+exports.deleteProduct = async (req, res, next) => {
 
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
         res.status(200).json({
             success: true,
-           message: "Product deleted"
+            message: "Product deleted"
         })
         next();
     } catch (error) {

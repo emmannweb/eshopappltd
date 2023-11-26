@@ -1,9 +1,8 @@
 const Category = require('../models/category');
 const ErrorResponse = require('../utils/errorResponse');
 
-exports.create = async (req, res, next)=>{
+exports.create = async (req, res, next) => {
     try {
-        //const cookie = req.cookies['token'];
         const category = await Category.create(req.body);
         res.status(200).json({
             success: true,
@@ -17,10 +16,9 @@ exports.create = async (req, res, next)=>{
 
 
 //display categories
-exports.allcategories = async (req, res, next)=>{
+exports.allcategories = async (req, res, next) => {
     try {
-        //const cookie = req.cookies['token'];
-        const categories = await Category.find().sort({createdAt: -1});
+        const categories = await Category.find().sort({ createdAt: -1 });
         res.status(200).json({
             success: true,
             categories
@@ -33,9 +31,8 @@ exports.allcategories = async (req, res, next)=>{
 
 
 //delete category
-exports.deletecategory = async (req, res, next)=>{
+exports.deletecategory = async (req, res, next) => {
     try {
-        //const cookie = req.cookies['token'];
         const category = await Category.findByIdAndRemove(req.params.id);
         res.status(200).json({
             success: true,
@@ -49,10 +46,9 @@ exports.deletecategory = async (req, res, next)=>{
 
 
 //update category
-exports.updatecategory = async (req, res, next)=>{
+exports.updatecategory = async (req, res, next) => {
     try {
-        //const cookie = req.cookies['token']; 
-        const category = await Category.findByIdAndUpdate(req.params.id, req.body, {new:true});
+        const category = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.status(200).json({
             success: true,
             category
@@ -65,9 +61,8 @@ exports.updatecategory = async (req, res, next)=>{
 
 
 //show single category
-exports.singlecategory = async (req, res, next)=>{
+exports.singlecategory = async (req, res, next) => {
     try {
-        //const cookie = req.cookies['token'];
         const category = await Category.findById(req.params.id);
         res.status(200).json({
             success: true,

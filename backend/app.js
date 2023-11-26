@@ -28,7 +28,7 @@ mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex : true,
+    useCreateIndex: true,
     useFindAndModify: false
   })
   .then(() => console.log("DB connected"))
@@ -40,33 +40,33 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 app.use(morgan('dev'));
-app.use(bodyParser.json({limit: '100mb'}));
+app.use(bodyParser.json({ limit: '100mb' }));
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   limit: '100mb',
   extended: true
-  })); 
+}));
 app.use(cookieParser());
 app.use(cors());
 
-  //ROUTES middleware 
-app.use("/api", auth );
-app.use("/api", categoryRoutes );
-app.use("/api", userRoutes );
-app.use("/api", productRoutes );
-app.use("/api", orderRoutes );
-app.use("/api", stripeRts );
+//ROUTES middleware 
+app.use("/api", auth);
+app.use("/api", categoryRoutes);
+app.use("/api", userRoutes);
+app.use("/api", productRoutes);
+app.use("/api", orderRoutes);
+app.use("/api", stripeRts);
 
-__dirname= path.resolve();
+__dirname = path.resolve();
 
-if (process.env.NODE_ENV=== 'production'){
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/frontend/build')))
 
-  app.get('*', (req, res)=>
+  app.get('*', (req, res) =>
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-  ) 
-  
-} else{
-  app.get('/', ()=>{
+  )
+
+} else {
+  app.get('/', (req, res) => {
     res.send("API is running...")
   })
 }
@@ -76,7 +76,7 @@ app.use(errorHandler);
 
 const port = process.env.PORT || 8000
 
-app.listen(port, ()=>{
-    console.log(`Server is running on port ${port}`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 

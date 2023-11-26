@@ -6,20 +6,6 @@ const User = require('../models/user');
 const ErrorResponse = require('../utils/errorResponse');
 
 
-//display all orders
-// exports.allOrders = async (req, res, next)=>{
-
-//     try {
-//         const orders = await Order.find().populate("user", "name").sort({createdAt: -1})
-//         res.status(200).json({
-//             success: true,
-//             orders
-//         })
-//         next();
-//     } catch (error) {
-//         return next(new ErrorResponse('Server error', 500));
-//     }
-// }
 
 //display all orders with pagination
 exports.allOrders = async (req, res, next) => {
@@ -36,14 +22,12 @@ exports.allOrders = async (req, res, next) => {
             .skip(pageSize * (page - 1))
             .limit(pageSize)
 
-
         res.status(200).json({
             success: true,
             orders,
             page,
             pages: Math.ceil(count / pageSize),
             count,
-
         })
         next();
     } catch (error) {
@@ -55,7 +39,6 @@ exports.allOrders = async (req, res, next) => {
 
 //display my order
 exports.ordersme = async (req, res, next) => {
-
     try {
         const orders = await Order.find({ user: req.user._id });
         res.status(200).json({
@@ -177,7 +160,6 @@ exports.createOrder = async (req, res, next) => {
             })
         }
 
-
     } catch (err) {
         next(err);
     }
@@ -187,9 +169,7 @@ exports.createOrder = async (req, res, next) => {
 
 //order summary
 exports.orderSumaryAdmin = async (req, res, next) => {
-
     try {
-
         const orders = await Order.aggregate([
             {
                 $group: {
