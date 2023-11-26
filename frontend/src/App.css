@@ -254,7 +254,7 @@ a {
 .single_product {
   padding-top: 100px;
   padding-bottom: 50px;
-  min-height: '92vh';
+  min-height: 92vh;
 }
 
 .img_wrapper {
