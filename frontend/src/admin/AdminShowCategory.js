@@ -9,17 +9,16 @@ import { toast } from 'react-toastify'
 const AdminShowCategory = () => {
 
     const [categories, setCategories] = useState([]);
-
-    //destructure
-    const { name, _id } = categories;
-    // console.log("category console", categories);
+    const [loading, setLoading] = useState(false);
 
     //show all categories
     const showCategory = () => {
+        setLoading(true);
         axios.get('/api/category/all')
             .then(res => {
                 // console.log(res.data.categories);
                 setCategories(res.data.categories);
+                setLoading(false);
             })
             .catch(error => {
                 console.log(error);
@@ -48,50 +47,48 @@ const AdminShowCategory = () => {
                 })
         }
     }
+
     return (
         <>
-
-
-
             <div className="container-fluid" >
 
-                <h1>Product Categories</h1>
-
+                <h2>Product Categories</h2>
 
                 <div className="btn_div_button" style={{ display: "flex", justifyContent: "right" }}>
                     <Link to="/admin/category/create" className="btn btn-default btn-primary "> + Create Category</Link>
                 </div>
-                <table className="table">
+                {
+                    loading ?
+                        <><h3 style={{ textAlign: 'center' }}>LOADING...</h3></> :
+                        <>
+                            <table className="table">
 
-                    <thead className="thead-dark">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col"> Name</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            categories && categories.map((category, id) => (
+                                <thead className="thead-dark">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col"> Name</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        categories && categories.map((category, id) => (
 
-                                <tr key={id}>
-                                    <th scope="row">{category._id}</th>
-                                    <td>{category.name}</td>
-                                    <td><Link to={`/admin/product/category/edit/${category._id}`}> <i class="fas fa-edit btn-primary"></i></Link></td>
-                                    <td><i onClick={() => deleteCategory(category._id, category.name)} class="far fa-trash-alt btn-danger" style={{ cursor: "pointer" }}></i></td>
-                                </tr>
-                            ))
-                        }
-
-
-                    </tbody>
-                </table>
-
+                                            <tr key={id}>
+                                                <th scope="row">{category._id}</th>
+                                                <td>{category.name}</td>
+                                                <td><Link to={`/admin/product/category/edit/${category._id}`}> <i class="fas fa-edit btn-primary"></i></Link></td>
+                                                <td><i onClick={() => deleteCategory(category._id, category.name)} class="far fa-trash-alt btn-danger" style={{ cursor: "pointer" }}></i></td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </>
+                }
 
             </div>
-
-
         </>
     )
 }

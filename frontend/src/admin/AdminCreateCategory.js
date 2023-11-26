@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Menu from '../component/Menu'
 import Footer from '../component/Footer'
 import SidebarAdmin from './SidebarAdmin';
@@ -29,8 +29,6 @@ const AdminCreateCategory = ({ history }) => {
 
     return (
         <>
-
-
             <div className="container custom_class">
                 <h2 className="signup_title ">CREATE PRODUCT CATEGORY</h2>
                 <form className=" col-sm-6 offset-3 pt-5 signup_form " enctype="multipart/form-data">
@@ -39,13 +37,9 @@ const AdminCreateCategory = ({ history }) => {
                         <input onChange={(e) => setName(e.target.value)} type="text" id="form4Example1" className="form-control" value={name} />
                         <label className="form-label" htmlFor="form4Example1">Name</label>
                     </div>
-
                     <button onClick={handleSubmitCategory} type="submit" className="btn btn-primary btn-block mb-4">Create Category</button>
-
                 </form>
             </div>
-
-
         </>
     )
 }

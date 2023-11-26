@@ -15,7 +15,6 @@ const AddToCart = ({ history }) => {
 
   //INCREASE VALUE
   const increaseValue = (id, quantity, countStock) => {
-
     const newQty = quantity + 1;
     if (newQty > countStock) return;
     dispatch(addItemToCart(id, newQty));
@@ -24,12 +23,9 @@ const AddToCart = ({ history }) => {
 
   //DECREASE VALUE
   const decreaseValue = (id, quantity) => {
-    //console.log("actual qty", quantity);
-
     const newQty = quantity - 1;
     if (newQty < 1) return;
     dispatch(addItemToCart(id, newQty));
-
   }
 
   //remove item from cart
@@ -79,8 +75,6 @@ const AddToCart = ({ history }) => {
                     <div className="colcart">
                       <h6><i onClick={() => removeItemFromCart(item.product)} style={{ color: "red", cursor: "pointer" }} className="fa fa-trash" aria-hidden="true"></i></h6>
                     </div>
-
-
                   </div>
                 ))
             }

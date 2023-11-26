@@ -1,21 +1,12 @@
 import React from 'react'
-import { Helmet } from "react-helmet"
 import './assets/css/dashboard.min.css'
 import './assets/css/demo.css'
-// import jquery from 'jquery'
+
 
 
 const AdminDashboardmdb = () => {
     return (
         <>
-            {/* <Helmet>
-                <link href="./assets/css/dashboard.min.css?v=2.1.2" rel="stylesheet" />
-                <link href="./assets/css/demo.css" rel="stylesheet" />
-            </Helmet> */}
-            <Helmet>
-
-
-            </Helmet>
             <div className="wrapper ">
                 <div className="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
                     <div className="logo"><a href="http://www.creative-tim.com" className="simple-text logo-normal">

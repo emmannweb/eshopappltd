@@ -6,6 +6,7 @@ import SidebarAdmin from './SidebarAdmin'
 import 'antd/dist/antd.css';
 import { Pagination } from 'antd';
 import { toast } from 'react-toastify'
+import moment from 'moment';
 
 
 const AdminShowOrders = () => {
@@ -14,18 +15,20 @@ const AdminShowOrders = () => {
     const [singleOrder, setSingleOrder] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
     const [totalItem, setTotalItem] = useState(0);
-    const [shippingAddressload, setShippingAddressload] = useState({})
+    const [shippingAddressload, setShippingAddressload] = useState({});
+    const [loading, setLoading] = useState(false);
 
 
 
     //show orders
     const displayAdminOrders = async () => {
+        setLoading(true);
         try {
-
             const { data } = await axios.get(`/api/orders/all?pageNumber=${pageNumber}`);
             if (data) {
                 setOrd(data.orders);
                 setTotalItem(data.count);
+                setLoading(false);
             }
         } catch (error) {
             console.log(error);
@@ -120,47 +123,53 @@ const AdminShowOrders = () => {
             <div className="order_user_history  container-fluid" >
 
                 <h2>Orders</h2>
-                <table className="table">
+                {
+                    loading ?
+                        <><h3 style={{ textAlign: 'center' }}>LOADING...</h3></> :
+                        <>
+                            <table className="table">
+                                <thead className="thead-dark">
+                                    <tr>
+                                        <th scope="col">OrderID</th>
+                                        <th scope="col">User</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Paid</th>
+                                        <th scope="col">Delivered</th>
+                                        <th scope="col">Delivered At</th>
+                                        <th scope="col">Actions  </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                    <thead className="thead-dark">
-                        <tr>
-                            <th scope="col">OrderID</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Paid</th>
-                            <th scope="col">Delivered</th>
-                            <th scope="col">Delivered At</th>
-                            <th scope="col">Actions  </th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                                    {
+                                        // orders && orders.length === 0 ? <><h2>Your don't have any purcharse</h2></> :  
 
-                        {
-                            // orders && orders.length === 0 ? <><h2>Your don't have any purcharse</h2></> :  
+                                        ord.map(order => (
 
-                            ord.map(order => (
+                                            <tr key={order?._id}>
+                                                <th scope="col">{order?._id}</th>
+                                                <th scope="col">{order?.user.name}</th>
+                                                <th scope="col">{order?.itemsPrice.toFixed(2)}</th>
+                                                <th scope="col">{order?.isPaid ? (<span style={{ color: "green" }}>Paid</span>) : (<span style={{ color: "#ffc107" }}>Processing</span>)}</th>
+                                                <th scope="col"> {order?.isDelivered ? (<span style={{ color: "green" }}>Yes</span>) : (<span style={{ color: "#ffc107" }}>No</span>)}</th>
+                                                <th scope="col">{order?.isPaid && order?.isDelivered ? moment(order?.deliveredAt).format('YYYY/MM/DD HH:MM:SS') : ''}</th>
 
-                                <tr key={order._id}>
-                                    <th scope="col">{order._id}</th>
-                                    <th scope="col">{order.user.name}</th>
-                                    <th scope="col">{order.itemsPrice.toFixed(2)}</th>
-                                    <th scope="col">{order.isPaid ? (<span style={{ color: "green" }}>Paid</span>) : (<span style={{ color: "#ffc107" }}>Processing</span>)}</th>
-                                    <th scope="col"> {order.isDelivered ? (<span style={{ color: "green" }}>Yes</span>) : (<span style={{ color: "#ffc107" }}>No</span>)}</th>
-                                    <th scope="col">{order.isPaid && order.isDelivered ? order.deliveredAt : ''}</th>
+                                                <th scope="col">
+                                                    <td > <i data-mdb-toggle="modal" data-mdb-target="#exampleModal" style={{ cursor: "pointer" }} onClick={() => singleOrderAdmin(order?._id)} className="fa-regular fa-eye"></i></td>
+                                                    <td><i onClick={() => confirmOrderPayment(order?._id)} class="fa-solid fa-dollar-sign" style={{ cursor: "pointer", paddingLeft: "20px", color: "green" }}></i></td>
+                                                    <td><i onClick={() => orderDeliveredHome(order?._id)} class="fa-solid fa-house-chimney" style={{ cursor: "pointer", marginLeft: "20px" }}></i></td>
+                                                    <td><i onClick={() => deleteOrder(order?._id)} class="far fa-trash-alt btn-danger" style={{ cursor: "pointer", marginLeft: "20px" }}></i></td>
+                                                </th>
 
-                                    <th scope="col">
-                                        <td > <i data-mdb-toggle="modal" data-mdb-target="#exampleModal" style={{ cursor: "pointer" }} onClick={() => singleOrderAdmin(order._id)} className="fa-regular fa-eye"></i></td>
-                                        <td><i onClick={() => confirmOrderPayment(order._id)} class="fa-solid fa-dollar-sign" style={{ cursor: "pointer", paddingLeft: "20px", color: "green" }}></i></td>
-                                        <td><i onClick={() => orderDeliveredHome(order._id)} class="fa-solid fa-house-chimney" style={{ cursor: "pointer", marginLeft: "20px" }}></i></td>
-                                        <td><i onClick={() => deleteOrder(order._id)} class="far fa-trash-alt btn-danger" style={{ cursor: "pointer", marginLeft: "20px" }}></i></td>
-                                    </th>
+                                            </tr>
+                                        ))
+                                    }
 
-                                </tr>
-                            ))
-                        }
+                                </tbody>
+                            </table>
+                        </>
+                }
 
-                    </tbody>
-                </table>
 
 
                 <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,11 +198,11 @@ const AdminShowOrders = () => {
 
                                             singleOrder && singleOrder.map(det => (
 
-                                                <tr key={det._id}>
-                                                    <th scope="col">{det.name}</th>
-                                                    <th scope="col">${det.price}</th>
-                                                    <th scope="col"><img style={{ maxWidth: "40%" }} src={det.image} alt={det.name} /></th>
-                                                    <th scope="col">{det.quantity}</th>
+                                                <tr key={det?._id}>
+                                                    <th scope="col">{det?.name}</th>
+                                                    <th scope="col">${det?.price}</th>
+                                                    <th scope="col"><img style={{ maxWidth: "40%" }} src={det?.image} alt={det?.name} /></th>
+                                                    <th scope="col">{det?.quantity}</th>
                                                 </tr>
                                             ))
                                         }

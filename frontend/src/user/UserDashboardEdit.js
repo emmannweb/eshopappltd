@@ -11,10 +11,6 @@ const UserDashboardEdit = ({ match, history }) => {
     const [avatar, setAvatar] = useState("");
 
 
-    // console.log(match);
-
-    //axios.put(`/api/user/dashboard/edit/${match.params.id}`)
-
     // //FETCH USER FROM THE BACKEND IN THE FORM
     useEffect(() => {
         axios.get(`/api/user/${match.params.id}`)
@@ -25,7 +21,6 @@ const UserDashboardEdit = ({ match, history }) => {
                     setEmail(res.data.user.email)
                     setAvatar(res.data.user.avatar)
                 }
-
             })
             .catch(error => {
                 console.log(error)
@@ -36,7 +31,6 @@ const UserDashboardEdit = ({ match, history }) => {
     const handleImage = (e) => {
         const file = e.target.files[0];
         setFileToBase(file);
-
     }
 
     const setFileToBase = (file) => {
@@ -45,7 +39,6 @@ const UserDashboardEdit = ({ match, history }) => {
         reader.onloadend = () => {
             setAvatar(reader.result);
         }
-
     }
 
     //send values to backend

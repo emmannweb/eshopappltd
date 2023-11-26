@@ -14,33 +14,33 @@ const AdminUsersList = () => {
     const [users, setUsers] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
     const [totalItem, setTotalItem] = useState(0);
-    //console.log("users state", users);
+    const [loading, setLoading] = useState(false);
+
 
     const loadUsers = () => {
+        setLoading(true);
         axios.get(`/api/allusers?pageNumber=${pageNumber}`)
             .then((res) => {
-                //console.log("users", res.data.users);
                 if (res) {
                     setUsers(res.data.users);
                     setTotalItem(res.data.count);
+                    setLoading(false);
                 }
             })
             .catch(error => {
                 console.log(error);
             })
     }
+
     useEffect(() => {
         loadUsers();
-
     }, [pageNumber]);
 
 
     //Deleting an user
     const deleteUser = (id, name) => {
 
-
         if (window.confirm(`Do you want to delete User: ${name}`)) {
-            //console.log(`current user ID: ${id} / ${name}`);
             axios.delete(`/api/admin/user/delete/${id}`)
                 .then(result => {
                     if (result) {
@@ -52,54 +52,52 @@ const AdminUsersList = () => {
                 .catch(error => {
                     console.log(error);
                 })
-
         }
-
     }
 
     return (
         <>
 
             <div className="container-fluid " >
-                <h1>Registred Users</h1>
+                <h2>Registred Users</h2>
+                {
+                    loading ?
+                        <><h3 style={{ textAlign: 'center' }}>LOADING...</h3></> :
+                        <>
+                            <table className="table">
+                                <thead className="thead-dark">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col"> Name</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        users && users.map((user, id) => (
 
-                {/* <div className="btn_div_button" style={{display: "flex", justifyContent: "right"}}>
-                <Link to="/admin/user/create" className="btn btn-default btn-primary "> + Create User</Link>
-            </div> */}
-                <table className="table">
+                                            <tr key={id}>
+                                                <th scope="row">{user._id}</th>
+                                                <td>{user.name}</td>
+                                                <td>{user.email}</td>
+                                                <td>{user.role === 1 ? "Admin" : "User"}</td>
+                                                <td><Link to={`/admin/user/edit/${user._id}`}> <i class="fas fa-edit btn-primary"></i></Link></td>
+                                                <td><i onClick={() => deleteUser(user._id, user.name)} class="far fa-trash-alt btn-danger" style={{ cursor: "pointer" }}></i></td>
+                                            </tr>
+                                        ))
+                                    }
 
-                    <thead className="thead-dark">
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col"> Name</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            users && users.map((user, id) => (
+                                </tbody>
+                            </table>
 
-                                <tr key={id}>
-                                    <th scope="row">{user._id}</th>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.role === 1 ? "Admin" : "User"}</td>
-                                    <td><Link to={`/admin/user/edit/${user._id}`}> <i class="fas fa-edit btn-primary"></i></Link></td>
-                                    <td><i onClick={() => deleteUser(user._id, user.name)} class="far fa-trash-alt btn-danger" style={{ cursor: "pointer" }}></i></td>
-                                </tr>
-                            ))
-                        }
-
-
-                    </tbody>
-                </table>
+                        </>
+                }
 
                 <Pagination current={pageNumber} total={totalItem} onChange={(value) => setPageNumber(value)} pageSize={15} />
             </div>
-
         </>
     )
 }

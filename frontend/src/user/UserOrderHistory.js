@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import Menu from '../component/Menu'
-import Footer from '../component/Footer'
-import axios from 'axios'
-import Sidebar from './Sidebar'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react';
+import Menu from '../component/Menu';
+import Footer from '../component/Footer';
+import axios from 'axios';
+import Sidebar from './Sidebar';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 
 
@@ -11,14 +12,17 @@ const UserOrderHistory = ({ history }) => {
     const { isAuthenticated } = useSelector(state => state.auth);
 
     const [orders, setOrders] = useState([])
+    const [loading, setLoading] = useState(false);
     const [orderDetails, setOrderDetails] = useState([])
 
 
     const fetchOrders = async () => {
+        setLoading(true);
         try {
             const { data } = await axios.get('/api/orders/me')
             if (data) {
                 setOrders(data.orders);
+                setLoading(false);
                 // console.log("use effect", data.orders)  
             }
         } catch (error) {
@@ -35,7 +39,7 @@ const UserOrderHistory = ({ history }) => {
                 const { data } = await axios.get(`/api/ordersingle/${id}`)
                 if (data) {
                     setOrderDetails(data.singleOrder.orderItems);
-                    console.log("use effect", data.singleOrder.orderItems)
+                    // console.log("use effect", data.singleOrder.orderItems)
                 }
             } catch (error) {
                 console.log(error)
@@ -56,46 +60,49 @@ const UserOrderHistory = ({ history }) => {
         <>
             <div className="order_user_history paddingTB container-fluid" >
                 {
-                    orders && orders.length === 0 ? <><h2 className='text-center pt-5'>Your don't have any purchase yet!</h2></> : (
-                        <table className="table">
+                    loading ?
+                        <><h4 style={{ textAlign: 'center' }}>LOADING...</h4></>
+                        :
+                        orders?.length === 0 ? <><h2 className='text-center pt-5'>Your don't have any purchase yet!</h2></> : (
+                            <table className="table">
 
-                            <thead className="thead-dark">
-                                <tr>
-                                    <th scope="col">OrderID</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Paid</th>
-                                    <th scope="col">Delivered</th>
-                                    <th scope="col">Delivered at</th>
-                                    <th scope="col">Details</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <thead className="thead-dark">
+                                    <tr>
+                                        <th scope="col">OrderID</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Paid</th>
+                                        <th scope="col">Delivered</th>
+                                        <th scope="col">Delivered at</th>
+                                        <th scope="col">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                {
-                                    // orders && orders.length === 0 ? <><h2>Your don't have any purcharse</h2></> :  
+                                    {
+                                        // orders && orders.length === 0 ? <><h2>Your don't have any purcharse</h2></> :  
 
-                                    orders.map(res => (
+                                        orders.map(res => (
 
-                                        <tr key={res._id}>
-                                            <th scope="col">{res._id}</th>
-                                            <th scope="col">{new Date(res.createdAt).toLocaleDateString()}</th>
-                                            <th scope="col">${res.itemsPrice.toFixed(2)}</th>
-                                            <th scope="col">{res.isPaid ? (<span style={{ color: "green" }}>Paid</span>) : (<span style={{ color: "#ffc107" }}>Processing</span>)}</th>
-                                            <th scope="col"> {res.isDelivered ? (<span style={{ color: "green" }}>Yes</span>) : (<span style={{ color: "#ffc107" }}>No</span>)}</th>
-                                            <th scope="col">{res.isPaid && res.isDelivered ? res.deliveredAt : ''}</th>
-                                            <th scope="col">
-                                                <button onClick={() => fetchSingleOrderDetails(res._id)} type="button" className="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
-                                                    details
-                                                </button>
-                                            </th>
-                                        </tr>
-                                    ))
-                                }
+                                            <tr key={res._id}>
+                                                <th scope="col">{res?._id}</th>
+                                                <th scope="col">{new Date(res.createdAt).toLocaleDateString()}</th>
+                                                <th scope="col">${res?.itemsPrice.toFixed(2)}</th>
+                                                <th scope="col">{res?.isPaid ? (<span style={{ color: "green" }}>Paid</span>) : (<span style={{ color: "#ffc107" }}>Processing</span>)}</th>
+                                                <th scope="col"> {res?.isDelivered ? (<span style={{ color: "green" }}>Yes</span>) : (<span style={{ color: "#ffc107" }}>No</span>)}</th>
+                                                <th scope="col">{res?.isPaid && res?.isDelivered ? moment(res.deliveredAt).format('YYYY/MM/DD HH:MM:SS') : ''}</th>
+                                                <th scope="col">
+                                                    <button onClick={() => fetchSingleOrderDetails(res._id)} type="button" className="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                                                        details
+                                                    </button>
+                                                </th>
+                                            </tr>
+                                        ))
+                                    }
 
-                            </tbody>
-                        </table>
-                    )
+                                </tbody>
+                            </table>
+                        )
                 }
 
 

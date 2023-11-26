@@ -22,14 +22,9 @@ const CreateProductAdmin = ({ history }) => {
 
     const [categories, setCategories] = useState([]);
 
-
-
-
-
     const handleImage = (e) => {
         const file = e.target.files[0];
         setFileToBase(file);
-
     }
 
     const setFileToBase = (file) => {
@@ -38,17 +33,12 @@ const CreateProductAdmin = ({ history }) => {
         reader.onloadend = () => {
             setAvatar(reader.result);
         }
-
     }
 
-    //console.log("avatar test", avatar);
+
     //send values to backend
     const handleSubmit = (e) => {
         e.preventDefault();
-        //const fileField = document.querySelector('input[type="file"]'); 
-
-
-        //console.log(name, description, price, avatar);
 
         // const avatar1 = avatar.avatar.split(",")[1];
 
@@ -81,58 +71,59 @@ const CreateProductAdmin = ({ history }) => {
             });
     }, [])
 
-    return <>
+    return (
+        <>
+            <div className="container custom_class">
+                <h2 className="signup_title ">CREATE PRODUCT</h2>
+                <form className=" col-sm-6 offset-3 pt-5 signup_form " enctype="multipart/form-data">
 
-        <div className="container custom_class">
-            <h2 className="signup_title ">CREATE PRODUCT</h2>
-            <form className=" col-sm-6 offset-3 pt-5 signup_form " enctype="multipart/form-data">
-
-                <div className="form-outline mb-4">
-                    <input onChange={(e) => setName(e.target.value)} type="text" id="form4Example1" className="form-control" />
-                    <label className="form-label" htmlFor="form4Example1">Name</label>
-                </div>
-
-
-                <div className="form-outline mb-4">
-                    <input onChange={(e) => setDescription(e.target.value)} type="text" id="form4Example2" className="form-control" />
-                    <label className="form-label" htmlFor="form4Example2">Description </label>
-                </div>
-
-                <div className="form-outline mb-4">
-                    <input onChange={(e) => setPrice(e.target.value)} type="number" id="form4Example3" className="form-control" />
-                    <label className="form-label" htmlFor="form4Example2">Price </label>
-                </div>
-
-                <div className="form-outline mb-4">
-                    <input onChange={(e) => setCountStock(e.target.value)} type="number" id="form4Example3" className="form-control" />
-                    <label className="form-label" htmlFor="form4Example2">Number in Stock </label>
-                </div>
-
-                <div className="form-outline mb-1">
-                    {/* <label style={{textAlign: "left", display: "block", paddingLeft: "14px"}} className="form-label" htmlFor="form4Example2">Category name </label><br/> */}
-                    <select onChange={(e) => setCategory(e.target.value)} id="cars" name="cars" className="form-control select select-initialized">
-                        <option value="" >Choose Category</option>
-                        {
-                            categories && categories.map(category => (
-                                <option key={category._id} value={category._id}>{category.name}</option>
-                            ))
-                        }
-                    </select>
-
-                </div>
+                    <div className="form-outline mb-4">
+                        <input onChange={(e) => setName(e.target.value)} type="text" id="form4Example1" className="form-control" />
+                        <label className="form-label" htmlFor="form4Example1">Name</label>
+                    </div>
 
 
-                <div className="form-outline mb-4">
-                    <input type="file" id="formupload" name="image" className="form-control" onChange={handleImage} />
-                    <label className="form-label" htmlFor="form4Example2">Image</label>
-                </div>
-                <img className="img-fluid" src={avatar && avatar} alt="" />
-                <button onClick={handleSubmit} type="submit" className="btn btn-primary btn-block mb-4">Create</button>
+                    <div className="form-outline mb-4">
+                        <input onChange={(e) => setDescription(e.target.value)} type="text" id="form4Example2" className="form-control" />
+                        <label className="form-label" htmlFor="form4Example2">Description </label>
+                    </div>
 
-            </form>
-        </div>
+                    <div className="form-outline mb-4">
+                        <input onChange={(e) => setPrice(e.target.value)} type="number" id="form4Example3" className="form-control" />
+                        <label className="form-label" htmlFor="form4Example2">Price </label>
+                    </div>
 
-    </>
+                    <div className="form-outline mb-4">
+                        <input onChange={(e) => setCountStock(e.target.value)} type="number" id="form4Example3" className="form-control" />
+                        <label className="form-label" htmlFor="form4Example2">Number in Stock </label>
+                    </div>
+
+                    <div className="form-outline mb-1">
+                        {/* <label style={{textAlign: "left", display: "block", paddingLeft: "14px"}} className="form-label" htmlFor="form4Example2">Category name </label><br/> */}
+                        <select onChange={(e) => setCategory(e.target.value)} id="cars" name="cars" className="form-control select select-initialized">
+                            <option value="" >Choose Category</option>
+                            {
+                                categories && categories.map(category => (
+                                    <option key={category._id} value={category._id}>{category.name}</option>
+                                ))
+                            }
+                        </select>
+
+                    </div>
+
+
+                    <div className="form-outline mb-4">
+                        <input type="file" id="formupload" name="image" className="form-control" onChange={handleImage} />
+                        <label className="form-label" htmlFor="form4Example2">Image</label>
+                    </div>
+                    <img className="img-fluid" src={avatar && avatar} alt="" />
+                    <button onClick={handleSubmit} type="submit" className="btn btn-primary btn-block mb-4">Create</button>
+
+                </form>
+            </div>
+
+        </>
+    )
 }
 
 export default CreateProductAdmin;

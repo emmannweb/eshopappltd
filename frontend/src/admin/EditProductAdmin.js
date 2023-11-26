@@ -4,7 +4,7 @@ import Footer from '../component/Footer'
 import SidebarAdmin from './SidebarAdmin';
 import axios from 'axios';
 import { toast } from 'react-toastify'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { listProducts } from '../action/productAction'
 
 const EditProductAdmin = ({ match, history }) => {
@@ -16,9 +16,6 @@ const EditProductAdmin = ({ match, history }) => {
     const [category, setCategory] = useState("")
     const [countStock, setCountStock] = useState("")
 
-
-    //console.log(match);
-    // console.log("category test", category);
 
     //FETCH PRODUCT FMO THE BACKEND IN THE FORM
     useEffect(() => {
@@ -75,8 +72,6 @@ const EditProductAdmin = ({ match, history }) => {
 
     return (
         <>
-
-
             <div className="container custom_class">
                 <h2 className="signup_title ">EDIT PRODUCT</h2>
                 <form className=" col-sm-6 offset-3 pt-5 signup_form " enctype="multipart/form-data">
@@ -85,7 +80,6 @@ const EditProductAdmin = ({ match, history }) => {
                         <input onChange={(e) => setName(e.target.value)} type="text" id="form4Example1" className="form-control" value={name ? name : ""} />
                         <label className="form-label" htmlFor="form4Example1">Name</label>
                     </div>
-
 
                     <div className="form-outline mb-4">
                         <input onChange={(e) => setDescription(e.target.value)} type="text" id="form4Example2" className="form-control" value={description ? description : ""} />
@@ -119,7 +113,6 @@ const EditProductAdmin = ({ match, history }) => {
 
                 </form>
             </div>
-
         </>
     )
 };

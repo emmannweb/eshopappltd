@@ -24,7 +24,6 @@ const AdminEditUser = ({ match, history }) => {
                     setEmail(res.data.user.email)
                     setAvatar(res.data.user.avatar)
                 }
-
             })
             .catch(error => {
                 console.log(error)
@@ -34,7 +33,6 @@ const AdminEditUser = ({ match, history }) => {
     const handleImage = (e) => {
         const file = e.target.files[0];
         setFileToBase(file);
-
     }
 
     const setFileToBase = (file) => {
@@ -43,7 +41,6 @@ const AdminEditUser = ({ match, history }) => {
         reader.onloadend = () => {
             setAvatar(reader.result);
         }
-
     }
 
     //send values to backend
@@ -94,7 +91,6 @@ const AdminEditUser = ({ match, history }) => {
 
                 </form>
             </div>
-
         </>
     )
 }

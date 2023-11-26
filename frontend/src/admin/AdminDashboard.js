@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
 import WidgetCard from '../component/WidgetCard'
 import { Chart } from "react-google-charts";
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
                             ]}
                             width="100%"
                             height="400px"
-                            loader={<h4>Loading...</h4>}
+                            loader={<h4 style={{ textAlign: 'center' }}>LOADING...</h4>}
 
                         />
                 }
