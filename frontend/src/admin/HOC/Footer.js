@@ -9,7 +9,7 @@ const Footer = () => {
                     <nav className="float-left">
                         <ul>
                             <li>
-                                <Link href="#">
+                                <Link to="/">
                                     Home
                                 </Link>
                             </li>

@@ -25,7 +25,7 @@ const Sidebar = () => {
                 <div className="sidebar-wrapper">
                     <ul className="nav">
                         {
-                            user.role == 0 ?
+                            user.role === 0 ?
                                 <>
                                     <li className={activeLink(pathname, '/user/dashboard')} >
                                         <Link className="nav-link " to="/user/dashboard">

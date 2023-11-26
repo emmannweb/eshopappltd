@@ -9,6 +9,7 @@ import axios from "axios"
 import { toast } from 'react-toastify'
 import 'antd/dist/antd.css';
 import { Pagination } from 'antd';
+import Loading from '../component/Loading'
 
 const AdminProduct = () => {
     const [pageNumber, setPageNumber] = useState(1);
@@ -49,7 +50,8 @@ const AdminProduct = () => {
 
                 {
                     loading ?
-                        <><h3 style={{ textAlign: 'center' }}>LOADING...</h3></> :
+                        <Loading />
+                        :
                         <>
                             <table className="table">
                                 <thead className="thead-dark">
@@ -73,7 +75,7 @@ const AdminProduct = () => {
                                                 <td>{product.countStock}</td>
                                                 <td>${product.price}</td>
                                                 <td>{product.category ? product.category.name : ""}</td>
-                                                <td><Link to={`/admin/product/edit/${product._id}`}> <i class="fas fa-edit btn-primary"></i></Link></td>
+                                                <td><Link to={`/admin/product/edit/${product._id}`}> <i className="fas fa-edit btn-primary"></i></Link></td>
                                                 <td style={{ cursor: "pointer" }} onClick={() => deleteProduct(product._id, product.name)}><i className="far fa-trash-alt btn-danger"></i></td>
                                             </tr>
                                         ))

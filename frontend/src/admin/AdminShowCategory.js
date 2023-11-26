@@ -5,6 +5,7 @@ import Footer from '../component/Footer'
 import SidebarAdmin from './SidebarAdmin'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import Loading from '../component/Loading'
 
 const AdminShowCategory = () => {
 
@@ -59,7 +60,8 @@ const AdminShowCategory = () => {
                 </div>
                 {
                     loading ?
-                        <><h3 style={{ textAlign: 'center' }}>LOADING...</h3></> :
+                        <Loading />
+                        :
                         <>
                             <table className="table">
 
@@ -78,8 +80,8 @@ const AdminShowCategory = () => {
                                             <tr key={id}>
                                                 <th scope="row">{category._id}</th>
                                                 <td>{category.name}</td>
-                                                <td><Link to={`/admin/product/category/edit/${category._id}`}> <i class="fas fa-edit btn-primary"></i></Link></td>
-                                                <td><i onClick={() => deleteCategory(category._id, category.name)} class="far fa-trash-alt btn-danger" style={{ cursor: "pointer" }}></i></td>
+                                                <td><Link to={`/admin/product/category/edit/${category._id}`}> <i className="fas fa-edit btn-primary"></i></Link></td>
+                                                <td><i onClick={() => deleteCategory(category._id, category.name)} className="far fa-trash-alt btn-danger" style={{ cursor: "pointer" }}></i></td>
                                             </tr>
                                         ))
                                     }

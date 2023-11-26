@@ -7,6 +7,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'antd/dist/antd.css';
 import { Pagination } from 'antd';
+import Loading from '../component/Loading'
 
 
 const AdminUsersList = () => {
@@ -62,7 +63,8 @@ const AdminUsersList = () => {
                 <h2>Registred Users</h2>
                 {
                     loading ?
-                        <><h3 style={{ textAlign: 'center' }}>LOADING...</h3></> :
+                        <Loading />
+                        :
                         <>
                             <table className="table">
                                 <thead className="thead-dark">
@@ -84,8 +86,8 @@ const AdminUsersList = () => {
                                                 <td>{user.name}</td>
                                                 <td>{user.email}</td>
                                                 <td>{user.role === 1 ? "Admin" : "User"}</td>
-                                                <td><Link to={`/admin/user/edit/${user._id}`}> <i class="fas fa-edit btn-primary"></i></Link></td>
-                                                <td><i onClick={() => deleteUser(user._id, user.name)} class="far fa-trash-alt btn-danger" style={{ cursor: "pointer" }}></i></td>
+                                                <td><Link to={`/admin/user/edit/${user._id}`}> <i className="fas fa-edit btn-primary"></i></Link></td>
+                                                <td><i onClick={() => deleteUser(user._id, user.name)} className="far fa-trash-alt btn-danger" style={{ cursor: "pointer" }}></i></td>
                                             </tr>
                                         ))
                                     }

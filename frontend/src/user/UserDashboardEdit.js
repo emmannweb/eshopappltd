@@ -62,7 +62,6 @@ const UserDashboardEdit = ({ match, history }) => {
 
     return (
         <>
-
             <div className="container custom_class">
                 <h2 className="signup_title ">EDIT USER INFO</h2>
                 <form className=" col-sm-6 offset-3 pt-5 signup_form " encType="multipart/form-data">

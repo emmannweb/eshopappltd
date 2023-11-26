@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Menu from '../component/Menu'
-import Footer from '../component/Footer'
-import SidebarAdmin from './SidebarAdmin';
+// import Menu from '../component/Menu'
+// import Footer from '../component/Footer'
+// import SidebarAdmin from './SidebarAdmin';
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -31,7 +31,7 @@ const AdminCreateCategory = ({ history }) => {
         <>
             <div className="container custom_class">
                 <h2 className="signup_title ">CREATE PRODUCT CATEGORY</h2>
-                <form className=" col-sm-6 offset-3 pt-5 signup_form " enctype="multipart/form-data">
+                <form className=" col-sm-6 offset-3 pt-5 signup_form " >
 
                     <div className="form-outline mb-4">
                         <input onChange={(e) => setName(e.target.value)} type="text" id="form4Example1" className="form-control" value={name} />

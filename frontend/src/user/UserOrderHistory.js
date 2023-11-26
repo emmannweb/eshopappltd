@@ -85,17 +85,17 @@ const UserOrderHistory = ({ history }) => {
                                         orders.map(res => (
 
                                             <tr key={res._id}>
-                                                <th scope="col">{res?._id}</th>
-                                                <th scope="col">{new Date(res.createdAt).toLocaleDateString()}</th>
-                                                <th scope="col">${res?.itemsPrice.toFixed(2)}</th>
-                                                <th scope="col">{res?.isPaid ? (<span style={{ color: "green" }}>Paid</span>) : (<span style={{ color: "#ffc107" }}>Processing</span>)}</th>
-                                                <th scope="col"> {res?.isDelivered ? (<span style={{ color: "green" }}>Yes</span>) : (<span style={{ color: "#ffc107" }}>No</span>)}</th>
-                                                <th scope="col">{res?.isPaid && res?.isDelivered ? moment(res.deliveredAt).format('YYYY/MM/DD HH:MM:SS') : ''}</th>
-                                                <th scope="col">
+                                                <td scope="col">{res?._id}</td>
+                                                <td scope="col">{new Date(res.createdAt).toLocaleDateString()}</td>
+                                                <td scope="col">${res?.itemsPrice.toFixed(2)}</td>
+                                                <td scope="col">{res?.isPaid ? (<span style={{ color: "green" }}>Paid</span>) : (<span style={{ color: "#ffc107" }}>Processing</span>)}</td>
+                                                <td scope="col"> {res?.isDelivered ? (<span style={{ color: "green" }}>Yes</span>) : (<span style={{ color: "#ffc107" }}>No</span>)}</td>
+                                                <td scope="col">{res?.isPaid && res?.isDelivered ? moment(res.deliveredAt).format('YYYY/MM/DD HH:MM:SS') : ''}</td>
+                                                <td scope="col">
                                                     <button onClick={() => fetchSingleOrderDetails(res._id)} type="button" className="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
                                                         details
                                                     </button>
-                                                </th>
+                                                </td>
                                             </tr>
                                         ))
                                     }
@@ -133,7 +133,7 @@ const UserOrderHistory = ({ history }) => {
                                         {
                                             //  orders && orders.length === 0 ? <><h2>Your don't have any purcharse</h2></> :  
 
-                                            orderDetails.map(det => (
+                                            orderDetails?.map(det => (
 
                                                 <tr key={det.product}>
                                                     <th scope="col">{det.name}</th>

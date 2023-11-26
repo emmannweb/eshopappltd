@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import { Pagination } from 'antd';
 import { toast } from 'react-toastify'
 import moment from 'moment';
+import Loading from '../component/Loading'
 
 
 const AdminShowOrders = () => {
@@ -125,7 +126,8 @@ const AdminShowOrders = () => {
                 <h2>Orders</h2>
                 {
                     loading ?
-                        <><h3 style={{ textAlign: 'center' }}>LOADING...</h3></> :
+                        <Loading />
+                        :
                         <>
                             <table className="table">
                                 <thead className="thead-dark">
@@ -155,10 +157,10 @@ const AdminShowOrders = () => {
                                                 <th scope="col">{order?.isPaid && order?.isDelivered ? moment(order?.deliveredAt).format('YYYY/MM/DD HH:MM:SS') : ''}</th>
 
                                                 <th scope="col">
-                                                    <td > <i data-mdb-toggle="modal" data-mdb-target="#exampleModal" style={{ cursor: "pointer" }} onClick={() => singleOrderAdmin(order?._id)} className="fa-regular fa-eye"></i></td>
-                                                    <td><i onClick={() => confirmOrderPayment(order?._id)} class="fa-solid fa-dollar-sign" style={{ cursor: "pointer", paddingLeft: "20px", color: "green" }}></i></td>
-                                                    <td><i onClick={() => orderDeliveredHome(order?._id)} class="fa-solid fa-house-chimney" style={{ cursor: "pointer", marginLeft: "20px" }}></i></td>
-                                                    <td><i onClick={() => deleteOrder(order?._id)} class="far fa-trash-alt btn-danger" style={{ cursor: "pointer", marginLeft: "20px" }}></i></td>
+                                                    <span > <i data-mdb-toggle="modal" data-mdb-target="#exampleModal" style={{ cursor: "pointer" }} onClick={() => singleOrderAdmin(order?._id)} className="fa-regular fa-eye"></i></span>
+                                                    <span><i onClick={() => confirmOrderPayment(order?._id)} className="fa-solid fa-dollar-sign" style={{ cursor: "pointer", paddingLeft: "20px", color: "green" }}></i></span>
+                                                    <span><i onClick={() => orderDeliveredHome(order?._id)} className="fa-solid fa-house-chimney" style={{ cursor: "pointer", marginLeft: "20px" }}></i></span>
+                                                    <span><i onClick={() => deleteOrder(order?._id)} className="far fa-trash-alt btn-danger" style={{ cursor: "pointer", marginLeft: "20px" }}></i></span>
                                                 </th>
 
                                             </tr>
@@ -213,9 +215,9 @@ const AdminShowOrders = () => {
                                 <div className="shipping_details_info">
                                     <h6>shipping info: </h6>
                                     <ul>
-                                        <li><b>Complete name: </b> {shippingAddressload.fullName} </li>
-                                        <li><b>Address: </b> {shippingAddressload.address}, {shippingAddressload.city}, {shippingAddressload.country}, {shippingAddressload.postalCode}</li>
-                                        <li><b>cellphone: </b> {shippingAddressload.cellPhone} </li>
+                                        <li><b>Complete name: </b> {shippingAddressload?.fullName} </li>
+                                        <li><b>Address: </b> {shippingAddressload?.address}, {shippingAddressload?.city}, {shippingAddressload?.country}, {shippingAddressload?.postalCode}</li>
+                                        <li><b>cellphone: </b> {shippingAddressload?.cellPhone} </li>
                                     </ul>
                                 </div>
 

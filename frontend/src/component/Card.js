@@ -31,7 +31,9 @@ const Card = ({ product, id, countStock, rating, numReviews }) => {
                     <div className="text-muted mb-3">{numReviews} reviews</div>
                     <Link to={`/product/${product._id}`}><h6>Details</h6></Link>
 
-                    <button disabled={countStock === 0} onClick={() => addToCardHome(id, 1)} type="button" className="btn bg-cart"><i className="fa fa-cart-plus mr-2"></i> Add to cart </button>
+                    <div className="button_wrapper" style={{ display: 'flex', justifyContent: 'center' }}>
+                        <button disabled={countStock === 0} onClick={() => addToCardHome(id, 1)} type="button" className="btn bg-cart"><i className="fa fa-cart-plus mr-2"></i> Add to cart </button>
+                    </div>
                 </div>
             </div>
         </div>

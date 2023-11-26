@@ -27,13 +27,13 @@ import Payment from '../cart/PaymentCart'
 import OrderSuccess from '../cart/OrderSuccess'
 import UserOrderHistory from '../user/UserOrderHistory'
 import AdminShowOrders from '../admin/AdminShowOrders'
-import AdminDashboardmdb from '../admin/AdminDashboardmdb'
+//import AdminDashboardmdb from '../admin/AdminDashboardmdb'
 import AdminProduct from '../admin/AdminProduct'
 import Layout from '../admin/HOC/Layout'
-import Test from '../admin/Test'
+//import Test from '../admin/Test'
 
 //HOC
-const testApp = Layout(Test);
+//const testApp = Layout(Test);
 const DashboardApp = Layout(AdminDashboard);
 const AdminProductApp = Layout(AdminProduct);
 const AdminShowCategoryApp = Layout(AdminShowCategory);
@@ -67,8 +67,8 @@ const Routes = () => {
                     <Route path='/' exact component={App} />
                     <Route path='/signin' exact component={Signin} />
                     <Route path='/signup' exact component={Signup} />
-                    <Route path='/admin/dashboardmdb' exact component={AdminDashboardmdb} />
-                    <Route path='/admin/dashlayout' exact component={testApp} />
+                    {/* <Route path='/admin/dashboardmdb' exact component={AdminDashboardmdb} /> */}
+                    {/* <Route path='/admin/dashlayout' exact component={testApp} /> */}
                     {/* <Route path='/admin/users' exact component={AdminUsersList} /> */}
                     <Route path='/product/:productid' exact component={ViewProduct} />
                     <PrivateAdminRoute path='/admin/product/create' exact component={CreateProductAdminApp} />

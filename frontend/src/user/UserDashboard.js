@@ -45,8 +45,7 @@ const UserDashboard = ({ history }) => {
 
 
     return (
-        <div>
-
+        <>
             <div className="container py-5">
 
                 <div className="profile">
@@ -60,21 +59,9 @@ const UserDashboard = ({ history }) => {
                     </ul>
                 </div>
             </div>
-
-
-        </div>
+        </>
     )
 }
 
 export default UserDashboard
 
-// export const isAuthenticated = () => {
-//     if (typeof window == 'undefined') {
-//         return false;
-//     }
-//     if (localStorage.getItem('jwt')) {
-//         return JSON.parse(localStorage.getItem('jwt'));
-//     } else {
-//         return false;
-//     }
-// };

@@ -13,7 +13,7 @@ const Menu = ({ history }) => {
 
     const { cartItems } = useSelector(state => state.cart);
 
-    const { isAuthenticated, error, user } = useSelector(state => state.auth);
+    const { isAuthenticated, user } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
     const logOutUser = () => {
@@ -34,12 +34,9 @@ const Menu = ({ history }) => {
 
 
     return (
-        <div>
-
+        <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-
                 <div className="container-fluid mobile_nav">
-
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -54,13 +51,8 @@ const Menu = ({ history }) => {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <Link className="navbar-brand mt-2 mt-lg-0" href="#">
-                            {/* <img
-                            src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
-                            height="15"
-                            alt=""
-                            loading="lazy"
-                            /> */}
+                        <Link className="navbar-brand mt-2 mt-lg-0" to="#">
+
                         </Link>
 
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -76,12 +68,6 @@ const Menu = ({ history }) => {
                                         <Link className="nav-link" to="/"><i className="fas fa-home fa-fw me-3"></i>Home </Link>
                                     </li>
 
-                                    {/* <li className="nav-item">
-                                            <span className="nav-link" style ={{cursor: 'pointer'}} onClick ={logOutUser}>Log out </span>
-                                    </li> */}
-
-
-
                                 </>) : (<>
 
 
@@ -92,15 +78,9 @@ const Menu = ({ history }) => {
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/signup">Sign Up </Link>
                                     </li>
-
-
                                 </>)
                             }
-
-
-
                         </ul>
-
                     </div>
                     {/* search box */}
                     <SearchBox history={history} />
@@ -114,7 +94,7 @@ const Menu = ({ history }) => {
 
                         <Link
                             className="text-reset me-3 dropdown-toggle hidden-arrow"
-                            href="#"
+                            to="#"
                             id="navbarDropdownMenuLink"
                             role="button"
                             data-mdb-toggle="dropdown"
@@ -128,7 +108,7 @@ const Menu = ({ history }) => {
 
                         <Link
                             className="dropdown-toggle d-flex align-items-center hidden-arrow"
-                            href="#"
+                            to="#"
                             id="navbarDropdownMenuLink"
                             role="button"
                             data-mdb-toggle="dropdown"
@@ -157,7 +137,7 @@ const Menu = ({ history }) => {
                             {
                                 user && user.name ? (
                                     <li>
-                                        <Link className="dropdown-item" to="#" onClick={logOutUser}>Logout</Link>
+                                        <span className="dropdown-item" onClick={logOutUser}>Logout</span>
                                     </li>
                                 ) : ''
                             }
@@ -166,10 +146,9 @@ const Menu = ({ history }) => {
                     </div>
 
                 </div>
-
             </nav>
+        </>
 
-        </div>
     )
 }
 

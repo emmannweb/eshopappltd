@@ -1,7 +1,6 @@
-import { ADD_TO_CART, REMOVE_TO_CART, SAVE_SHIPPING_ADDRESS, CLEAR_SHIPPING_ADDRESS } from '../constants/cartConstants'
-import React from 'react'
-import axios from 'axios'
-import { toast } from 'react-toastify'
+import { ADD_TO_CART, REMOVE_TO_CART, SAVE_SHIPPING_ADDRESS, CLEAR_SHIPPING_ADDRESS } from '../constants/cartConstants';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
 

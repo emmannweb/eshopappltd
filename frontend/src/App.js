@@ -19,7 +19,7 @@ const App = ({ match }) => {
 
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
-    const { loading, products, count, page, error } = productList
+    const { loading, products, count, page } = productList
 
 
     useEffect(() => {

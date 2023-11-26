@@ -75,7 +75,7 @@ const CreateProductAdmin = ({ history }) => {
         <>
             <div className="container custom_class">
                 <h2 className="signup_title ">CREATE PRODUCT</h2>
-                <form className=" col-sm-6 offset-3 pt-5 signup_form " enctype="multipart/form-data">
+                <form className=" col-sm-6 offset-3 pt-5 signup_form " encType="multipart/form-data">
 
                     <div className="form-outline mb-4">
                         <input onChange={(e) => setName(e.target.value)} type="text" id="form4Example1" className="form-control" />

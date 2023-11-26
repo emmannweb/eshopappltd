@@ -1,4 +1,7 @@
 import React from 'react'
+import '../assets/css/dashboard.min.css'
+import '../assets/css/demo.css'
+
 import Footer from './Footer'
 import Nav from './Nav'
 import Sidebar from './Sidebar'
