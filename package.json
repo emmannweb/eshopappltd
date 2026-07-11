@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "22.12.0"
+  },
   "scripts": {
     "start": "ts-node-dev --poll backend/src/server.ts",
     "build": "tsc -p ./backend/tsconfig.json",

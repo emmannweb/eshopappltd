@@ -41,7 +41,7 @@ app.use(
   bodyParser.urlencoded({
     limit: "5mb",
     extended: true,
-  })
+  }),
 );
 app.use(cookieParser());
 app.use(cors());
@@ -52,7 +52,7 @@ app.use(
     directives: {
       "img-src": ["'self'", "https: data:"],
     },
-  })
+  }),
 );
 
 //route middleware
@@ -74,7 +74,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));
 
   app.get("*", (req: Request, res: Response) =>
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html")),
   );
 } else {
   app.get("/", (req: Request, res: Response) => {
@@ -84,6 +84,6 @@ if (process.env.NODE_ENV === "production") {
 
 const port: number = parseInt(process.env.PORT as string) || 8000;
 
-app.listen(port, (): void => {
+app.listen(port, "0.0.0.0", (): void => {
   console.log(`Server running on port ${port}`);
 });
