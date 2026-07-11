@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es2016", 
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "ignoreDeprecations": "5.0",
+    "forceConsistentCasingInFileNames": true,                    
+    "skipLibCheck": true                               
+  },
+
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode"
+  ],
+  "files":["../env.d.ts","../index.d.ts"]
+}
