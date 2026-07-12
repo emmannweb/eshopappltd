@@ -87,5 +87,5 @@ const port: number = parseInt(process.env.PORT as string) || 8000;
 
 app.listen(port, "0.0.0.0", (): void => {
   console.log(`Server running on port ${port}`);
-  startSelfPing(process.env.DOMAIN as string, 1);
+  startSelfPing(process.env.DOMAIN as string, 13);
 });
