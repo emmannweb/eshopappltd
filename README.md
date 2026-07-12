@@ -1,8 +1,8 @@
-# eshopappltd-deploy
+# eshopappltd
 
 ## Overview
 
-`eshopappltd-deploy` is a modern ecommerce platform built with a clean separation between frontend and backend.
+`eshopappltd` is a modern ecommerce platform built with a clean separation between frontend and backend.
 
 - Frontend: React with Material UI, Redux Toolkit, Formik/Yup validation, and MUI DataGrid.
 - Backend: Node.js with TypeScript, Express, MongoDB, following repository/controller design patterns, cookie-based authentication, and Stripe integration.
