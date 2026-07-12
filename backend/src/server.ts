@@ -62,12 +62,6 @@ app.use("/api", categoryRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", paymentRoutes);
 
-app.all("*", async (req, res, next) => {
-  next(new NotFound());
-});
-
-app.use(errorHandler);
-
 __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
@@ -81,6 +75,12 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running....");
   });
 }
+
+app.all("*", async (req, res, next) => {
+  next(new NotFound());
+});
+
+app.use(errorHandler);
 
 const port: number = parseInt(process.env.PORT as string) || 8000;
 
