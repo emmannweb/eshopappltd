@@ -19,6 +19,7 @@ import { categoryRoutes } from "./routes/categoryRoute";
 import { orderRoutes } from "./routes/orderRoutes";
 import { paymentRoutes } from "./routes/stripeRoute";
 import { NotFound } from "./erros/notFound";
+import { startSelfPing } from "./utils/pingService";
 
 if (!process.env.DATABASE) {
   throw new Error("DATABASE is not defined");
@@ -86,4 +87,5 @@ const port: number = parseInt(process.env.PORT as string) || 8000;
 
 app.listen(port, "0.0.0.0", (): void => {
   console.log(`Server running on port ${port}`);
+  startSelfPing(process.env.DOMAIN as string, 1);
 });
