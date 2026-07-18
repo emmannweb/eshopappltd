@@ -7,6 +7,14 @@
 - Frontend: React with Material UI, Redux Toolkit, Formik/Yup validation, and MUI DataGrid.
 - Backend: Node.js with TypeScript, Express, MongoDB, following repository/controller design patterns, cookie-based authentication, and Stripe integration.
 
+![My Image](screenshots/eshop-home.png)
+
+![My Image](screenshots/home-side-cart.png)
+
+![My Image](screenshots/eshop-dashboard.png)
+
+![My Image](screenshots/eshop-product.png)
+
 ## Features
 
 ### Frontend
